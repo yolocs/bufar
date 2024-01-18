@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package bufarexample.v1;
+
+// A gRPC service definition used for lumberjack integration test.
+service TalkerService {
+  // Say hello with something OK to audit log in request/response.
+  rpc Hello(HelloRequest) returns (HelloResponse);
+}
+
+message HelloRequest {
+  string target = 1;
+  string message = 2;
+
+  optional string foo = 3;
+  optional int32 bar = 4;
+}
+
+message HelloResponse {
+  string message = 1;
+  EmbeddedThing embedded_thing = 2;
+}
+
+message EmbeddedThing {
+  optional string internal_message = 1;
+}
